@@ -56,7 +56,7 @@ CREATE TABLE vendas(
 INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor A', '12345678901234', '1234567890', 'Rua A, 123');
 INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor B', '98765432109876', '9876543210', 'Rua B, 456');
 INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor C', '56789012345678', '8765432109', 'Rua C, 789');
-INSERT INTO forneceddores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor D', '12345678901234', '1234567890', 'Rua A, 123');
+INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor D', '12345678901234', '1234567890', 'Rua A, 123');
 INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor E', '98765432109876', '9876543210', 'Rua B, 456');
 INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor F', '56789012345678', '8765432109', 'Rua C, 789');
 
