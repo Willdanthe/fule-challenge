@@ -32,7 +32,6 @@ CREATE TABLE estoque(
 
 CREATE TABLE compras(
     id SERIAL PRIMARY KEY,
-    quantidade INT,
     data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     valor_total FLOAT DEFAULT 0,
     fk_fornecedor INT,
@@ -41,7 +40,6 @@ CREATE TABLE compras(
 
 CREATE TABLE vendas(
     id SERIAL PRIMARY KEY,
-    quantidade INT,
     data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     valor_total INT DEFAULT 0,
     fk_cliente INT,
@@ -103,13 +101,13 @@ INSERT INTO estoque (quantidade, fk_produto) VALUES
 (12, 6);
 
 -- Insert da tabela COMPRAS
-INSERT INTO compras (quantidade, fk_fornecedor) VALUES 
-(10, 1),
-(5, 2),
-(20, 3),
-(15, 4),
-(8, 5),
-(12, 6);
+INSERT INTO compras (fk_fornecedor) VALUES 
+(1),
+(2),
+(3),
+(4),
+(5),
+(6);
 
 -- Insert da tabela COMPRAS_PRODUTOS
 INSERT INTO compras_produtos (quantidade, fk_compra, fk_produto) VALUES 
@@ -121,13 +119,13 @@ INSERT INTO compras_produtos (quantidade, fk_compra, fk_produto) VALUES
 (12, 6, 6);
 
 -- Insert da tabela VENDAS
-INSERT INTO vendas (quantidade, fk_cliente) VALUES 
-(5, 1),
-(3, 2),
-(8, 3),
-(2, 4),
-(6, 5),
-(4, 6);
+INSERT INTO vendas (fk_cliente) VALUES 
+(1),
+(2),
+(3),
+(4),
+(5),
+(6);
 
 -- Insert da tabela VENDAS_PRODUTOS
 INSERT INTO vendas_produtos (quantidade, fk_venda, fk_produto) VALUES 
