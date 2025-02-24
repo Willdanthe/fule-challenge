@@ -163,12 +163,94 @@ select * from estoque;
 
 -- criando a tabela 7.3
 
+create table Monitoramento_Banco(
 
+    Id SERIAL primary key,
+    AcaoRealizada VARCHAR(50),
+    NomeTabela VARCHAR(50),
+    DataAcao  DATE DEFAULT CURRENT_DATE,
+    Usuario VARCHAR(50) 
+);
 
 
 -- 7.4 Crie um trigger chamado tr_monitoramento_banco, que insira automaticamente um
 -- registro na tabela Monitoramento_Banco sempre que um registro for inserido, atualizado
 -- ou excluído em qualquer tabela principal do banco de dados.
+CREATE OR REPLACE FUNCTION Monitoramento_Banco() 
+RETURNS TRIGGER AS $$  
+BEGIN 
+    IF TG_OP = 'INSERT' THEN
+        INSERT INTO Monitoramento_Banco (AcaoRealizada, NomeTabela, Usuario) 
+        VALUES ('INSERT', TG_TABLE_NAME, CURRENT_USER);
+
+    ELSIF TG_OP = 'UPDATE' THEN 
+        INSERT INTO Monitoramento_Banco (AcaoRealizada, NomeTabela, Usuario) 
+        VALUES ('UPDATE', TG_TABLE_NAME, CURRENT_USER);
+
+    ELSIF TG_OP = 'DELETE' THEN 
+        INSERT INTO Monitoramento_Banco (AcaoRealizada, NomeTabela, Usuario) 
+        VALUES ('DELETE', TG_TABLE_NAME, CURRENT_USER);
+
+    ELSE
+        RAISE EXCEPTION 'Operação desconhecida no trigger';
+    END IF;
+
+    RETURN NULL; 
+END;
+$$ LANGUAGE plpgsql;
+
+
+create trigger Monitoramento_Banco_Trigger
+after insert or update or delete on fornecedores
+for each row
+execute function Monitoramento_Banco();
+
+
+create trigger Monitoramento_Banco_Trigger
+after insert or update or delete on clientes
+for each row
+execute function Monitoramento_Banco();
+
+
+create trigger Monitoramento_Banco_Trigger
+after insert or update or delete on produtos
+for each row
+execute function Monitoramento_Banco();
+
+
+create trigger Monitoramento_Banco_Trigger
+after insert or update or delete on estoque
+for each row
+execute function Monitoramento_Banco();
+
+
+create trigger Monitoramento_Banco_Trigger
+after insert or update or delete on compras
+for each row
+execute function Monitoramento_Banco();
+
+
+create trigger Monitoramento_Banco_Trigger
+after insert or update or delete on compras_produtos
+for each row
+execute function Monitoramento_Banco();
+
+
+CREATE TRIGGER Monitoramento_Banco_Trigger
+AFTER INSERT OR UPDATE OR DELETE ON vendas
+FOR EACH ROW
+EXECUTE FUNCTION Monitoramento_Banco();
+
+
+CREATE TRIGGER Monitoramento_Banco_Trigger
+AFTER INSERT OR UPDATE OR DELETE ON vendas_produtos
+FOR EACH ROW
+EXECUTE FUNCTION Monitoramento_Banco();
+
+
+
+insert into estoque ( quantidade, fk_produto) values (10, 1);
+select * from Monitoramento_Banco;
 
 
 DROP TABLE IF EXISTS compras_produtos;
