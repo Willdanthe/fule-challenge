@@ -43,7 +43,7 @@ CREATE TABLE vendas(
     id SERIAL PRIMARY KEY,
     quantidade INT,
     data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    valor_total FLOAT DEFAULT 0,
+    valor_total INT DEFAULT 0,
     fk_cliente INT,
     CONSTRAINT fk_cliente_vendas FOREIGN KEY (fk_cliente) REFERENCES clientes(id) ON DELETE CASCADE
 );
@@ -65,32 +65,6 @@ CREATE TABLE compras_produtos(
     CONSTRAINT fk_compra_compras_produtos FOREIGN KEY (fk_compra) REFERENCES compras(id) ON DELETE CASCADE,
     CONSTRAINT fk_produto_compras_produtos FOREIGN KEY (fk_produto) REFERENCES produtos(id) ON DELETE CASCADE
 );
-
-
-
--- Insert da tabela FORNECEDORES
-INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor A', '56.789.012/0001-78', '1234567890', 'Rua A, 123');
-INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor B', '98765432109876', '9876543210', 'Rua B, 456');
-INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor C', '56.789.012/0001-91', '8765432109', 'Rua C, 789');
-INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor D', '98.765.432/0001-76', '1234567890', 'Rua A, 123');
-INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor E', '56.789.012/0001-91', '9876543210', 'Rua B, 456');
-INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES ('Fornecedor F', '56.789.012/0001-78', '8765432109', 'Rua C, 789');
-
--- Insert da tabela CLIENTES
-INSERT INTO clientes (nome, cpf_cnpj, telefone, endereco) VALUES ('Cliente A', '123.456.789-01', '1234567890', 'Rua A, 123');
-INSERT INTO clientes (nome, cpf_cnpj, telefone, endereco) VALUES ('Cliente B', '987.654.321-09', '9876543210', 'Rua B, 456');
-INSERT INTO clientes (nome, cpf_cnpj, telefone, endereco) VALUES ('Cliente C', '567.890.123-45', '8765432109', 'Rua C, 789');
-INSERT INTO clientes (nome, cpf_cnpj, telefone, endereco) VALUES ('Cliente D', '98.765.432/0001-76', '1234567890', 'Rua A, 123');
-INSERT INTO clientes (nome, cpf_cnpj, telefone, endereco) VALUES ('Cliente E', '56.789.012/0001-91', '9876543210', 'Rua B, 456');
-INSERT INTO clientes (nome, cpf_cnpj, telefone, endereco) VALUES ('Cliente F', '56.789.012/0001-78', '8765432109', 'Rua C, 789');
-
--- Insert da tabela PRODUTOS
-INSERT INTO produtos (nome, tipo, preco_unitario, unidade_medida) VALUES ('Produto A', 'Tipo A', 10.99, 'Unidade');
-INSERT INTO produtos (nome, tipo, preco_unitario, unidade_medida) VALUES ('Produto B', 'Tipo B', 19.99, 'Unidade');
-INSERT INTO produtos (nome, tipo, preco_unitario, unidade_medida) VALUES ('Produto C', 'Tipo C', 5.99, 'Unidade');
-INSERT INTO produtos (nome, tipo, preco_unitario, unidade_medida) VALUES ('Produto D', 'Tipo D', 15.99, 'Unidade');
-INSERT INTO produtos (nome, tipo, preco_unitario, unidade_medida) VALUES ('Produto E', 'Tipo E', 25.99, 'Unidade');
-INSERT INTO produtos (nome, tipo, preco_unitario, unidade_medida) VALUES ('Produto F', 'Tipo F', 8.99, 'Unidade');
 
 -- Insert da tabela FORNECEDORES
 INSERT INTO fornecedores (nome, cpnj, telefone, endereco) VALUES 
