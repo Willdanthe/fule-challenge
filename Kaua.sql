@@ -17,9 +17,10 @@ CREATE TABLE clientes(
 CREATE TABLE produtos(
     id SERIAL PRIMARY KEY,
     nome VARCHAR(255),
+    descricao VARCHAR(255),
     tipo VARCHAR(255),
     preco_unitario FLOAT,
-    unidade_medida VARCHAR(10)
+    unidade_medida VARCHAR(255)
 );
 
 CREATE TABLE estoque(
@@ -83,13 +84,18 @@ INSERT INTO clientes (nome, cpf_cnpj, telefone, endereco) VALUES
 ('Cliente F', '12.345.678/0001-12', '8765432109', 'Rua F, 987');
 
 -- Insert da tabela PRODUTOS
-INSERT INTO produtos (nome, tipo, preco_unitario, unidade_medida) VALUES 
-('Produto A', 'Tipo A', 10.99, 'Unidade'),
-('Produto B', 'Tipo B', 19.99, 'Unidade'),
-('Produto C', 'Tipo C', 5.99, 'Unidade'),
-('Produto D', 'Tipo D', 15.99, 'Unidade'),
-('Produto E', 'Tipo E', 25.99, 'Unidade'),
-('Produto F', 'Tipo F', 8.99, 'Unidade');
+INSERT INTO produtos (nome, descricao, tipo, preco_unitario, unidade_medida) VALUES 
+('DIESEL', 'S10', 'Combustível', 5.79, 'Litro'),
+('GASOLINA', 'Comum', 'Combustível', 6.49, 'Litro'),
+('ETANOL', 'Hidratado', 'Combustível', 4.99, 'Litro'),
+('ÓLEO LUBRIFICANTE', 'Sintético 5W30', 'Lubrificante', 32.90, 'Litro'),
+('ARLA 32', 'Redutor de emissões', 'Fluido automotivo', 3.50, 'Litro'),
+('PNEU 185/65R15', 'Pneu para carros de passeio', 'Pneumático', 349.90, 'Unidade'),
+('FILTRO DE ÓLEO', 'Filtro para motor 1.0 a 2.0', 'Peça automotiva', 45.00, 'Unidade'),
+('BATERIA 60Ah', 'Bateria para veículos leves', 'Bateria automotiva', 420.00, 'Unidade'),
+('PASTILHA DE FREIO', 'Dianteira - modelos variados', 'Peça automotiva', 120.00, 'Jogo'),
+('ADITIVO PARA RADIADOR', 'Pronto para uso', 'Fluido automotivo', 25.90, 'Litro');
+
 
 -- Insert da tabela ESTOQUE
 INSERT INTO estoque (quantidade, fk_produto) VALUES 
